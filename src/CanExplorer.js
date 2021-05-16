@@ -155,8 +155,8 @@ export default class CanExplorer extends Component {
     } else if (this.props.isDemo) {
       // is demo!
 
-      const logUrls = demoLogUrls;
-      const route = demoRoute;
+      const logUrls = global.retropilotLoaded ? global.retropilotLogUrls : demoLogUrls;
+      const route = global.retropilotLoaded ? global.retropilotRoute : demoRoute;
 
       this.setState({
         logUrls,

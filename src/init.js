@@ -13,6 +13,7 @@ import {
   persistGithubAuthToken
 } from './api/localstorage';
 import { demoProps } from './demo';
+import {loadRetropilotDrive} from './retropilotloader';
 
 export default function init() {
   Sentry.init();
@@ -86,6 +87,12 @@ export default function init() {
 
   async function renderDom() {
     const token = await CommaAuth.init();
+    
+    await loadRetropilotDrive(getUrlParameter('retropilotHost') || '', getUrlParameter('retropilotIdentifier') || '', getUrlParameter('seekTime') || 0);
+    if (global.retropilotLoaded) {
+      props = global.retropilotProps;
+    }
+
     if (token) {
       Request.configure(token);
     }

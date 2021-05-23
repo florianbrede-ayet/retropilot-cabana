@@ -161,7 +161,7 @@ export default class CanExplorer extends Component {
       this.setState({
         logUrls,
         route,
-        currentParts: [0, 2],
+        currentParts: [0, Math.min(logUrls.length - 1, PART_SEGMENT_LENGTH - 1)],
         currentPart: 0
       }, this.initCanData);
     } else if (
